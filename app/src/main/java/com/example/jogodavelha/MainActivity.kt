@@ -38,40 +38,65 @@ class MainActivity : AppCompatActivity() {
 
 
    }
+    var ganhador = -1
     var player1 = ArrayList<Int>()
     var player2 = ArrayList<Int>()
 
-    fun reiniciar(){
-        button.text = ""
-        button.setBackgroundColor(Color.LTGRAY)
-        button2.text = ""
-        button2.setBackgroundColor(Color.LTGRAY)
-        button3.text = ""
-        button3.setBackgroundColor(Color.LTGRAY)
-        button4.text = ""
-        button4.setBackgroundColor(Color.LTGRAY)
-        button5.text = ""
-        button5.setBackgroundColor(Color.LTGRAY)
-        button6.text = ""
-        button6.setBackgroundColor(Color.LTGRAY)
-        button7.text = ""
-        button7.setBackgroundColor(Color.LTGRAY)
-        button8.text = ""
-        button8.setBackgroundColor(Color.LTGRAY)
-        button9.text = ""
-        button9.setBackgroundColor(Color.LTGRAY)
+    private fun reiniciar(){
+        if(ganhador == 1){
+            button.text = "W  I"
+            button.setBackgroundColor(Color.LTGRAY)
+            button.setTextColor(Color.BLUE)
+            button2.text = "N  N"
+            button2.setBackgroundColor(Color.LTGRAY)
+            button3.text = "E  R"
+            button3.setBackgroundColor(Color.LTGRAY)
+            button4.text = "P  L"
+            button4.setBackgroundColor(Color.LTGRAY)
+            button5.text = "A  Y"
+            button5.setBackgroundColor(Color.LTGRAY)
+            button6.text = "E  R"
+            button6.setBackgroundColor(Color.LTGRAY)
+            button7.text = "O"
+            button7.setBackgroundColor(Color.LTGRAY)
+            button8.text = "N"
+            button8.setBackgroundColor(Color.LTGRAY)
+            button9.text = "E"
+            button9.setBackgroundColor(Color.LTGRAY)
+        }
+        if(ganhador == 2){
+            button.text = "W  I"
+            button.setBackgroundColor(Color.LTGRAY)
+            button2.text = "N  N"
+            button2.setBackgroundColor(Color.LTGRAY)
+            button3.text = "E  R"
+            button3.setBackgroundColor(Color.LTGRAY)
+            button4.text = "P  L"
+            button4.setBackgroundColor(Color.LTGRAY)
+            button5.text = "A  Y"
+            button5.setBackgroundColor(Color.LTGRAY)
+            button6.text = "E  R"
+            button6.setBackgroundColor(Color.LTGRAY)
+            button7.text = "T"
+            button7.setBackgroundColor(Color.LTGRAY)
+            button8.text = "W"
+            button8.setBackgroundColor(Color.LTGRAY)
+            button9.text = "O"
+            button9.setBackgroundColor(Color.LTGRAY)
+
+        }
 
 
 
-        player1.clear()
-        player2.clear()
+
+
 
 
     }
     var countPlays = 0
     private fun jogar(idCell: Int, buttonClicked: Button) {
 
-        textView.text="vez do jogadpr  "+playerAtivo
+        //textView.text="vez do jogadpr  "+playerAtivo
 
             if (playerAtivo == 1) {
                 buttonClicked.text = "X"
@@ -100,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun verificarGanhador(){
-        var ganhador = -1
+
         //Linhas 123
         if(player1.contains(1) && player1.contains(2) && player1.contains(3))//jogador 1
             ganhador = 1
@@ -141,10 +166,10 @@ class MainActivity : AppCompatActivity() {
             ganhador = 2
         if(ganhador == 1){
             Toast.makeText(this, "Parabens, jogador" + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
-
+            reiniciar()
         }else if(ganhador == 2){
             Toast.makeText(this, "Parabens, jogador" + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
-
+            reiniciar()
         }else{
 
         }
