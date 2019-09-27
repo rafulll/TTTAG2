@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         textView.text="vez do jogadpr  "+playerAtivo+"\n Jogadas Realizadas: "+playsCount
 
     }
@@ -123,38 +124,34 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    var countPlays = 0
-    private fun jogar(idCell: Int, buttonClicked: Button) {
 
+    private fun jogar(idCell: Int, buttonClicked: Button) {
+        if(activeGame != 0){
+            playsCount += 1
+        }
 
         if(activeGame == 0){
-            if(ganhador == 4){
-
-                Toast.makeText(this, "Jogo Finalizado:  Ninguem Ganhou!", Toast.LENGTH_LONG).show()
-
-            }
            Toast.makeText(this, "Jogo Finalizado: Jogador " + ganhador + " ganhou !\n Reinicie!", Toast.LENGTH_LONG).show()
 
         }else{
-            if(playerAtivo == 4){
 
-            }
             if (playerAtivo == 1) {
                 buttonClicked.text = "X"
-                buttonClicked.setBackgroundColor(Color.GRAY)
                 player1.add(idCell)
                 playerAtivo = 2
                 verificarGanhador()
                 buttonClicked.isEnabled = false
-                playsCount += 1
+
+
             }else{
+
                 buttonClicked.text = "O"
-                buttonClicked.setBackgroundColor(Color.GREEN)
                 player2.add(idCell)
                 playerAtivo = 1
                 verificarGanhador()
                 buttonClicked.isEnabled = false
-                playsCount += 1
+
+
 
             }
         }
@@ -167,57 +164,190 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun verificarGanhador(){
+        if(playsCount > 8 && ganhador == -1 && playerAtivo == 2){
+            Toast.makeText(this, "Ops, ninguem ganhou.", Toast.LENGTH_LONG).show()
+            activeGame = 0
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+
+
+
+
+        }
 
         //Linhas 123
         if(player1.contains(1) && player1.contains(2) && player1.contains(3))//jogador 1
-            ganhador = 1
+        {   ganhador = 1
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)}
         if(player2.contains(1) && player2.contains(2) && player2.contains(3))//jogador 2
-            ganhador = 2
+        {ganhador = 2
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)}
         if(player1.contains(1) && player1.contains(4) && player1.contains(7))//jogador 1
-            ganhador = 1
+        { ganhador = 1
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)}
         if(player2.contains(1) && player2.contains(4) && player2.contains(7))//jogador 2
+        {
             ganhador = 2
-
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        }
         //Linhas 456
         if(player1.contains(4) && player1.contains(5) && player1.contains(6))//jogador 1
+        {
             ganhador = 1
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player2.contains(4) && player2.contains(5) && player2.contains(6))//jogador 2
+        {
             ganhador = 2
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player1.contains(2) && player1.contains(5) && player1.contains(8))//jogador 1
+        {
             ganhador = 1
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player2.contains(2) && player2.contains(5) && player2.contains(8))//jogador 2
+        {
             ganhador = 2
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        }
         //Linhas 789
         if(player1.contains(7) && player1.contains(8) && player1.contains(9))//jogador 1
+        {
             ganhador = 1
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player2.contains(7) && player2.contains(8) && player2.contains(9))//jogador 2
+        {
             ganhador = 2
-
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+        }
         //Diagonais
         if(player1.contains(1) && player1.contains(5) && player1.contains(9))//jogador 1
+        {
             ganhador = 1
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player2.contains(1) && player2.contains(5) && player2.contains(9))//jogador 2
+        {
             ganhador = 2
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player1.contains(3) && player1.contains(5) && player1.contains(7))//jogador 1
+        {
             ganhador = 1
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player2.contains(3) && player2.contains(5) && player2.contains(7))//jogador 2
+        {
             ganhador = 2
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player1.contains(3) && player1.contains(6) && player1.contains(9))//jogador 1
+        {
             ganhador = 1
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player2.contains(3) && player2.contains(6) && player2.contains(9))//jogador 2
+        {
             ganhador = 2
-
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(ganhador == 1){
-            Toast.makeText(this, "Parabens, jogador" + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Parabens, Player" + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
             activeGame = 0
 
         }else if(ganhador == 2){
-            Toast.makeText(this, "Parabens, jogador" + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Parabens, Player " + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
             activeGame = 0
 
-        }else if(countPlays == 9 && ganhador == -1){
-            Toast.makeText(this, "Ops, ninguem ganhou.", Toast.LENGTH_LONG).show()
-            activeGame = 0
         }
 
     }
