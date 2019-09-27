@@ -1,5 +1,6 @@
 package com.example.jogodavelha
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.Random
 class MainActivity : AppCompatActivity() {
@@ -14,8 +16,32 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        textView.text="vez do jogadpr  "+playerAtivo+"\n Jogadas Realizadas: "+playsCount
+
     }
     var playerAtivo = 1
+    var activeGame = 1
+    fun sair(view: View){
+        val buttonClicked = view as Button
+        when(buttonClicked.id){
+            R.id.button11 -> {
+                finish()
+            }
+
+        }
+    }
+    fun reStart(view: View){
+        reiniciar()
+        val buttonClicked = view as Button
+        when(buttonClicked.id) {
+            R.id.button10 -> {
+                playerAtivo = 4
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+    }
    fun marcar(view: View){
        val buttonClicked = view as Button
        var idCell = 0
@@ -41,8 +67,12 @@ class MainActivity : AppCompatActivity() {
     var ganhador = -1
     var player1 = ArrayList<Int>()
     var player2 = ArrayList<Int>()
+    var playsCount = 0
 
     private fun reiniciar(){
+        Toast.makeText(this, "Jogo Reiniciado.", Toast.LENGTH_LONG).show()
+
+        /*
         if(ganhador == 1){
             button.text = "W  I"
             button.setBackgroundColor(Color.LTGRAY)
@@ -85,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             button9.setBackgroundColor(Color.LTGRAY)
 
         }
-
+*/
 
 
 
@@ -96,27 +126,39 @@ class MainActivity : AppCompatActivity() {
     var countPlays = 0
     private fun jogar(idCell: Int, buttonClicked: Button) {
 
-        //textView.text="vez do jogadpr  "+playerAtivo
 
+        if(activeGame == 0){
+            if(ganhador == 4){
+
+                Toast.makeText(this, "Jogo Finalizado:  Ninguem Ganhou!", Toast.LENGTH_LONG).show()
+
+            }
+           Toast.makeText(this, "Jogo Finalizado: Jogador " + ganhador + " ganhou !\n Reinicie!", Toast.LENGTH_LONG).show()
+
+        }else{
+            if(playerAtivo == 4){
+
+            }
             if (playerAtivo == 1) {
                 buttonClicked.text = "X"
                 buttonClicked.setBackgroundColor(Color.GRAY)
                 player1.add(idCell)
-                verificarGanhador()
                 playerAtivo = 2
-
+                verificarGanhador()
+                buttonClicked.isEnabled = false
+                playsCount += 1
             }else{
                 buttonClicked.text = "O"
                 buttonClicked.setBackgroundColor(Color.GREEN)
                 player2.add(idCell)
-                verificarGanhador()
                 playerAtivo = 1
-
+                verificarGanhador()
+                buttonClicked.isEnabled = false
+                playsCount += 1
 
             }
-
-
-        buttonClicked.isEnabled = false
+        }
+        textView.text="vez do jogadpr  "+playerAtivo+"\n Jogadas Realizadas: "+playsCount
 
         }
 
@@ -164,16 +206,19 @@ class MainActivity : AppCompatActivity() {
             ganhador = 1
         if(player2.contains(3) && player2.contains(6) && player2.contains(9))//jogador 2
             ganhador = 2
+
         if(ganhador == 1){
             Toast.makeText(this, "Parabens, jogador" + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
-            reiniciar()
+            activeGame = 0
+
         }else if(ganhador == 2){
             Toast.makeText(this, "Parabens, jogador" + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
-            reiniciar()
-        }else{
+            activeGame = 0
 
+        }else if(countPlays == 9 && ganhador == -1){
+            Toast.makeText(this, "Ops, ninguem ganhou.", Toast.LENGTH_LONG).show()
+            activeGame = 0
         }
-
 
     }
 

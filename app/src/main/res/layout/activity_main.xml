@@ -72,16 +72,32 @@
                     android:layout_height="80dp" android:id="@+id/button9"
                     android:onClick="marcar"/>
         </TableRow>
-
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Reiniciar"
+            android:onClick="reStart"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="586dp"/>
     </TableLayout>
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_gravity="bottom|center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" tools:text="AUSHUASHUS" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" app:layout_constraintBottom_toBottomOf="@+id/tableLayout"/>
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/tableLayout"
+        tools:text="AUSHUASHUS"/>
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:onClick="sair"
+        android:layout_height="wrap_content" android:layout_marginBottom="50dp"
+        android:text="Sair" app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
