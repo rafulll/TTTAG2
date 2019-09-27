@@ -65,64 +65,13 @@ class MainActivity : AppCompatActivity() {
 
 
    }
-    var ganhador = -1
+    var ganhador = 4
     var player1 = ArrayList<Int>()
     var player2 = ArrayList<Int>()
     var playsCount = 0
 
     private fun reiniciar(){
         Toast.makeText(this, "Jogo Reiniciado.", Toast.LENGTH_LONG).show()
-
-        /*
-        if(ganhador == 1){
-            button.text = "W  I"
-            button.setBackgroundColor(Color.LTGRAY)
-            button.setTextColor(Color.BLUE)
-            button2.text = "N  N"
-            button2.setBackgroundColor(Color.LTGRAY)
-            button3.text = "E  R"
-            button3.setBackgroundColor(Color.LTGRAY)
-            button4.text = "P  L"
-            button4.setBackgroundColor(Color.LTGRAY)
-            button5.text = "A  Y"
-            button5.setBackgroundColor(Color.LTGRAY)
-            button6.text = "E  R"
-            button6.setBackgroundColor(Color.LTGRAY)
-            button7.text = "O"
-            button7.setBackgroundColor(Color.LTGRAY)
-            button8.text = "N"
-            button8.setBackgroundColor(Color.LTGRAY)
-            button9.text = "E"
-            button9.setBackgroundColor(Color.LTGRAY)
-        }
-        if(ganhador == 2){
-            button.text = "W  I"
-            button.setBackgroundColor(Color.LTGRAY)
-            button2.text = "N  N"
-            button2.setBackgroundColor(Color.LTGRAY)
-            button3.text = "E  R"
-            button3.setBackgroundColor(Color.LTGRAY)
-            button4.text = "P  L"
-            button4.setBackgroundColor(Color.LTGRAY)
-            button5.text = "A  Y"
-            button5.setBackgroundColor(Color.LTGRAY)
-            button6.text = "E  R"
-            button6.setBackgroundColor(Color.LTGRAY)
-            button7.text = "T"
-            button7.setBackgroundColor(Color.LTGRAY)
-            button8.text = "W"
-            button8.setBackgroundColor(Color.LTGRAY)
-            button9.text = "O"
-            button9.setBackgroundColor(Color.LTGRAY)
-
-        }
-*/
-
-
-
-
-
-
     }
 
     private fun jogar(idCell: Int, buttonClicked: Button) {
@@ -143,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                 buttonClicked.isEnabled = false
 
 
-            }else{
+            }else if(playerAtivo == 2){
 
                 buttonClicked.text = "O"
                 player2.add(idCell)
@@ -153,6 +102,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
+            }else if(playerAtivo==2 && playsCount == 9){
+                activeGame = 0
+                ganhador = -1
             }
         }
         textView.text="vez do jogadpr  "+playerAtivo+"\n Jogadas Realizadas: "+playsCount
@@ -190,9 +142,13 @@ class MainActivity : AppCompatActivity() {
             button6.setBackgroundColor(Color.TRANSPARENT)
             button7.setBackgroundColor(Color.TRANSPARENT)
             button8.setBackgroundColor(Color.TRANSPARENT)
-            button9.setBackgroundColor(Color.TRANSPARENT)}
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        activeGame = 0
+        }
         if(player2.contains(1) && player2.contains(2) && player2.contains(3))//jogador 2
-        {ganhador = 2
+        {
+            activeGame = 0
+            ganhador = 2
             button4.setBackgroundColor(Color.TRANSPARENT)
             button5.setBackgroundColor(Color.TRANSPARENT)
             button6.setBackgroundColor(Color.TRANSPARENT)
@@ -200,7 +156,9 @@ class MainActivity : AppCompatActivity() {
             button8.setBackgroundColor(Color.TRANSPARENT)
             button9.setBackgroundColor(Color.TRANSPARENT)}
         if(player1.contains(1) && player1.contains(4) && player1.contains(7))//jogador 1
-        { ganhador = 1
+        {
+            activeGame = 0
+            ganhador = 1
             button2.setBackgroundColor(Color.TRANSPARENT)
             button3.setBackgroundColor(Color.TRANSPARENT)
             button5.setBackgroundColor(Color.TRANSPARENT)
@@ -209,6 +167,7 @@ class MainActivity : AppCompatActivity() {
             button9.setBackgroundColor(Color.TRANSPARENT)}
         if(player2.contains(1) && player2.contains(4) && player2.contains(7))//jogador 2
         {
+            activeGame = 0
             ganhador = 2
             button2.setBackgroundColor(Color.TRANSPARENT)
             button3.setBackgroundColor(Color.TRANSPARENT)
@@ -220,6 +179,8 @@ class MainActivity : AppCompatActivity() {
         //Linhas 456
         if(player1.contains(4) && player1.contains(5) && player1.contains(6))//jogador 1
         {
+
+            activeGame = 0
             ganhador = 1
             button.setBackgroundColor(Color.TRANSPARENT)
             button2.setBackgroundColor(Color.TRANSPARENT)
@@ -230,6 +191,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player2.contains(4) && player2.contains(5) && player2.contains(6))//jogador 2
         {
+            activeGame = 0
             ganhador = 2
             button.setBackgroundColor(Color.TRANSPARENT)
             button2.setBackgroundColor(Color.TRANSPARENT)
@@ -240,6 +202,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player1.contains(2) && player1.contains(5) && player1.contains(8))//jogador 1
         {
+            activeGame = 0
             ganhador = 1
             button.setBackgroundColor(Color.TRANSPARENT)
             button3.setBackgroundColor(Color.TRANSPARENT)
@@ -250,6 +213,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player2.contains(2) && player2.contains(5) && player2.contains(8))//jogador 2
         {
+            activeGame = 0
             ganhador = 2
             button.setBackgroundColor(Color.TRANSPARENT)
             button3.setBackgroundColor(Color.TRANSPARENT)
@@ -261,6 +225,7 @@ class MainActivity : AppCompatActivity() {
         //Linhas 789
         if(player1.contains(7) && player1.contains(8) && player1.contains(9))//jogador 1
         {
+            activeGame = 0
             ganhador = 1
             button.setBackgroundColor(Color.TRANSPARENT)
             button2.setBackgroundColor(Color.TRANSPARENT)
@@ -271,6 +236,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player2.contains(7) && player2.contains(8) && player2.contains(9))//jogador 2
         {
+            activeGame = 0
             ganhador = 2
             button.setBackgroundColor(Color.TRANSPARENT)
             button2.setBackgroundColor(Color.TRANSPARENT)
@@ -282,6 +248,7 @@ class MainActivity : AppCompatActivity() {
         //Diagonais
         if(player1.contains(1) && player1.contains(5) && player1.contains(9))//jogador 1
         {
+            activeGame = 0
             ganhador = 1
             button2.setBackgroundColor(Color.TRANSPARENT)
             button3.setBackgroundColor(Color.TRANSPARENT)
@@ -292,6 +259,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player2.contains(1) && player2.contains(5) && player2.contains(9))//jogador 2
         {
+            activeGame = 0
             ganhador = 2
             button2.setBackgroundColor(Color.TRANSPARENT)
             button3.setBackgroundColor(Color.TRANSPARENT)
@@ -302,6 +270,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player1.contains(3) && player1.contains(5) && player1.contains(7))//jogador 1
         {
+            activeGame = 0
             ganhador = 1
             button.setBackgroundColor(Color.TRANSPARENT)
             button2.setBackgroundColor(Color.TRANSPARENT)
@@ -312,6 +281,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player2.contains(3) && player2.contains(5) && player2.contains(7))//jogador 2
         {
+            activeGame = 0
             ganhador = 2
             button.setBackgroundColor(Color.TRANSPARENT)
             button2.setBackgroundColor(Color.TRANSPARENT)
@@ -322,6 +292,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player1.contains(3) && player1.contains(6) && player1.contains(9))//jogador 1
         {
+            activeGame = 0
             ganhador = 1
             button.setBackgroundColor(Color.TRANSPARENT)
             button2.setBackgroundColor(Color.TRANSPARENT)
@@ -332,6 +303,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(player2.contains(3) && player2.contains(6) && player2.contains(9))//jogador 2
         {
+            activeGame = 0
             ganhador = 2
             button.setBackgroundColor(Color.TRANSPARENT)
             button2.setBackgroundColor(Color.TRANSPARENT)

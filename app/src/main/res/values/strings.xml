@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">jogodavelha</string>
-
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-
 </resources>
