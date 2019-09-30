@@ -308,11 +308,11 @@ class MainActivity : AppCompatActivity() {
             button8.setBackgroundColor(Color.TRANSPARENT)
         }
         if(ganhador == 1){
-            Toast.makeText(this, "Parabens, Player" + intent.getStringExtra('player1') + ". Você venceu!!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Parabens, Player" + intent.getStringExtra("player2") + ". Você venceu!!!", Toast.LENGTH_LONG).show()
             activeGame = 0
 
         }else if(ganhador == 2){
-            Toast.makeText(this, "Parabens, " + intent.getStringExtra('player2') + ". Você venceu!!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Parabens, " + intent.getStringExtra("player2") + ". Você venceu!!!", Toast.LENGTH_LONG).show()
             activeGame = 0
 
         }else if(playsCount > 8 && ganhador == 4){
