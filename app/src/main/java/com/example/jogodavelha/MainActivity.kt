@@ -102,10 +102,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-            }else if(playerAtivo==2 && playsCount == 9){
-                activeGame = 0
-                ganhador = -1
             }
+//            else if(playerAtivo==2 && playsCount == 9 && ganhador == 4){
+//                activeGame = 0
+//                ganhador = -1
+//
+//            }
         }
         textView.text="vez do jogadpr  "+playerAtivo+"\n Jogadas Realizadas: "+playsCount
 
@@ -116,23 +118,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun verificarGanhador(){
-        if(playsCount > 8 && ganhador == -1 && playerAtivo == 2){
-            Toast.makeText(this, "Ops, ninguem ganhou.", Toast.LENGTH_LONG).show()
-            activeGame = 0
-            button.setBackgroundColor(Color.TRANSPARENT)
-            button2.setBackgroundColor(Color.TRANSPARENT)
-            button3.setBackgroundColor(Color.TRANSPARENT)
-            button4.setBackgroundColor(Color.TRANSPARENT)
-            button5.setBackgroundColor(Color.TRANSPARENT)
-            button6.setBackgroundColor(Color.TRANSPARENT)
-            button7.setBackgroundColor(Color.TRANSPARENT)
-            button8.setBackgroundColor(Color.TRANSPARENT)
-            button9.setBackgroundColor(Color.TRANSPARENT)
-
-
-
-
-        }
 
         //Linhas 123
         if(player1.contains(1) && player1.contains(2) && player1.contains(3))//jogador 1
@@ -164,7 +149,8 @@ class MainActivity : AppCompatActivity() {
             button5.setBackgroundColor(Color.TRANSPARENT)
             button6.setBackgroundColor(Color.TRANSPARENT)
             button8.setBackgroundColor(Color.TRANSPARENT)
-            button9.setBackgroundColor(Color.TRANSPARENT)}
+            button9.setBackgroundColor(Color.TRANSPARENT)
+        }
         if(player2.contains(1) && player2.contains(4) && player2.contains(7))//jogador 2
         {
             activeGame = 0
@@ -320,7 +306,24 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Parabens, Player " + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
             activeGame = 0
 
+        }else if(playsCount > 8 && ganhador == 4){
+            Toast.makeText(this, "Ops, ninguem ganhou.", Toast.LENGTH_LONG).show()
+            activeGame = 0
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            button5.setBackgroundColor(Color.TRANSPARENT)
+            button6.setBackgroundColor(Color.TRANSPARENT)
+            button7.setBackgroundColor(Color.TRANSPARENT)
+            button8.setBackgroundColor(Color.TRANSPARENT)
+            button9.setBackgroundColor(Color.TRANSPARENT)
+
+
+
+
         }
+
 
     }
 
