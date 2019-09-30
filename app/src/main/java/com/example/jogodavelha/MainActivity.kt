@@ -6,18 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.Random
+import kotlinx.android.synthetic.main.activity_main_screen.*
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        textView.text="vez do jogadpr  "+playerAtivo+"\n Jogadas Realizadas: "+playsCount
+
 
     }
     var playerAtivo = 1
@@ -26,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         val buttonClicked = view as Button
         when(buttonClicked.id){
             R.id.button11 -> {
+                val intent = Intent(this, MainScreen::class.java)
+                startActivity(intent)
                 finish()
             }
 
@@ -109,7 +110,15 @@ class MainActivity : AppCompatActivity() {
 //
 //            }
         }
-        textView.text="vez do jogadpr  "+playerAtivo+"\n Jogadas Realizadas: "+playsCount
+        if(playerAtivo == 1){
+            var turn = "vez do  "+intent.getStringExtra("player1")+"\n Jogadas Realizadas: "+playsCount
+            textView.text=turn
+
+        }else if(playerAtivo == 2){
+            var turn = "vez do  "+intent.getStringExtra("player2")+"\n Jogadas Realizadas: "+playsCount
+            textView.text=turn
+
+        }
 
         }
 
@@ -299,11 +308,11 @@ class MainActivity : AppCompatActivity() {
             button8.setBackgroundColor(Color.TRANSPARENT)
         }
         if(ganhador == 1){
-            Toast.makeText(this, "Parabens, Player" + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Parabens, Player" + intent.getStringExtra('player1') + ". Você venceu!!!", Toast.LENGTH_LONG).show()
             activeGame = 0
 
         }else if(ganhador == 2){
-            Toast.makeText(this, "Parabens, Player " + ganhador + ". Você venceu!!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Parabens, " + intent.getStringExtra('player2') + ". Você venceu!!!", Toast.LENGTH_LONG).show()
             activeGame = 0
 
         }else if(playsCount > 8 && ganhador == 4){
