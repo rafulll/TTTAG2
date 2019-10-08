@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_screen.*
@@ -38,8 +39,13 @@ class MainActivity : AppCompatActivity() {
         when(buttonClicked.id) {
             R.id.button10 -> {
                 playerAtivo = 4
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainScreen::class.java)
+
+
+                intent.putExtra("player1", intent.getStringExtra("player1"))
+                intent.putExtra("player1", intent.getStringExtra("player1"))
                 startActivity(intent)
+
                 finish()
             }
         }
@@ -308,7 +314,7 @@ class MainActivity : AppCompatActivity() {
             button8.setBackgroundColor(Color.TRANSPARENT)
         }
         if(ganhador == 1){
-            Toast.makeText(this, "Parabens, Player" + intent.getStringExtra("player2") + ". Você venceu!!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Parabens, " + intent.getStringExtra("player1") + ". Você venceu!!!", Toast.LENGTH_LONG).show()
             activeGame = 0
 
         }else if(ganhador == 2){
