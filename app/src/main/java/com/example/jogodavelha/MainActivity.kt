@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         val buttonClicked = view as Button
         when(buttonClicked.id){
             R.id.button11 -> {
-                val intent = Intent(this, MainScreen::class.java)
-                startActivity(intent)
+                //val intent = Intent(this, MainScreen::class.java)
+                //startActivity(intent)
                 finish()
             }
 
