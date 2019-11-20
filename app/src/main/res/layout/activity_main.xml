@@ -15,14 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
             android:gravity="center">
+
 
             <Button
                 android:id="@+id/button"
@@ -131,7 +135,6 @@
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/tableLayout"
         android:text="Novo Jogo"
         tools:text="Novo Jogo"/>
-
     <Button
         android:id="@+id/button10"
         android:layout_width="wrap_content"
@@ -147,9 +150,11 @@
         android:layout_width="wrap_content"
         android:onClick="sair"
         android:layout_height="wrap_content" android:layout_marginBottom="1dp"
-        android:text="Sair"
-        app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+        android:text="Mudar Jogadores"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
