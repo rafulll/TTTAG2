@@ -35,6 +35,10 @@ class PaymentActivity : AppCompatActivity() {
             reqParam += "&" + URLEncoder.encode("parcelas", "UTF-8") + "=" + URLEncoder.encode(editText7.text.toString(), "UTF-8")
             reqParam += "&" + URLEncoder.encode("valor_em_centavos", "UTF-8") + "=" + URLEncoder.encode(1000.toString(), "UTF-8")
             val mURL = URL("https://ws-branks.herokuapp.com/v1/pay")
+            var cartao = editText4.text.toString()
+            var cliente = editText5.text.toString()
+            var cod = editText6.text.toString()
+            var parc = editText7.text.toString()
 
             with(mURL.openConnection() as HttpURLConnection) {
                 // optional default is GET
@@ -44,6 +48,10 @@ class PaymentActivity : AppCompatActivity() {
                 wr.write(reqParam)
 
                 wr.flush()
+                println("cartao : $cartao")
+                println("cliente : $cliente")
+                println("cod segur : $cod")
+                println("parcelas : $parc")
 
                 println("URL : $url")
                 println("Response Code : $responseCode")
