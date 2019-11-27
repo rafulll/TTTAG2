@@ -12,6 +12,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.login_activity)
 
 
@@ -80,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
                     bd.update(
                         TBL_USUARIO_JOGO, contentValues, "$TBL_USUARIO_IDU = ?", arrayOf(id)
                     )
+
                     val intent = Intent(this, MainScreen::class.java)
                     intent.putExtra("jogador",cursor.getString(cursor.getColumnIndex(TBL_USUARIO_LOGIN)))
                     intent.putExtra("jogadorid",cursor.getInt(cursor.getColumnIndex(TBL_USUARIO_ID)))
