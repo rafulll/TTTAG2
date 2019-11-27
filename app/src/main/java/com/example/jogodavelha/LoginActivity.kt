@@ -69,6 +69,8 @@ class LoginActivity : AppCompatActivity() {
                         "Numero de jogadas excedidas. Compre ja nossa aplicação",
                         Toast.LENGTH_LONG
                     ).show()
+                    val intent = Intent(this, PaymentActivity::class.java)
+                    startActivity(intent)
                 } else {
 
                     val contentValues = ContentValues().apply {

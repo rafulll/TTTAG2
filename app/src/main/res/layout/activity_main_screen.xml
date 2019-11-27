@@ -16,7 +16,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.783"
-
         app:layout_constraintStart_toEndOf="@+id/btnJogar"
          />
 
@@ -26,7 +25,6 @@
         android:layout_height="250px"
         android:onClick="play"
         android:text="Jogar"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnSair"
         app:layout_constraintHorizontal_bias="0.498"

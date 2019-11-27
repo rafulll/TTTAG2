@@ -17,7 +17,7 @@ class MainScreen : AppCompatActivity() {
         editText.setText(intent.getStringExtra("player"))
     }
 
-    fun logoff() {
+    fun logoff(view:View) {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
