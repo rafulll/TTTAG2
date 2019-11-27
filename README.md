@@ -3,4 +3,5 @@
 # JOGO PARA ANDROID DESENVOLVIDO EM KOTLIN
 
 - Dúvidas: raful@aluno.fapce.edu.br
-- Ultima atualização: 20/11/2019
+- Ultima atualização: **26/11/2019
+~~20/11/2019
