@@ -56,13 +56,13 @@ class LoginActivity : AppCompatActivity() {
             val cursor = bd.rawQuery(sql, arrayOf(etName.text.toString(), etPass.text.toString()))
 
             if (cursor.moveToFirst()) {
-                Toast.makeText(this,"Credits left: " + cursor.getString(
-                        cursor.getColumnIndex(TBL_USUARIO_JOGO_COUNT)
-                    ), Toast.LENGTH_LONG
-                ).show()
+
                 id = cursor.getString(cursor.getColumnIndex(TBL_USUARIO_ID))
                 credit = (cursor.getInt(cursor.getColumnIndex(TBL_USUARIO_JOGO_COUNT)))
                 credit_down = (credit-1)
+                Toast.makeText(this,"Credits left: " + credit_down
+                , Toast.LENGTH_LONG
+                ).show()
                 if (credit < 1) {
                     Toast.makeText(
                         this,
@@ -70,6 +70,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                     val intent = Intent(this, PaymentActivity::class.java)
+                    intent.putExtra("id_user", id.toString())
                     startActivity(intent)
                 } else {
 

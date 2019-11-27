@@ -1,5 +1,6 @@
 package com.example.jogodavelha
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -19,7 +20,7 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 class PaymentActivity : AppCompatActivity() {
-
+    private val sqlHelper = SqlHelper(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
@@ -27,6 +28,7 @@ class PaymentActivity : AppCompatActivity() {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
         }
+
         button12.setOnClickListener {
 
             var reqParam = URLEncoder.encode("numero_cartao", "UTF-8") + "=" + URLEncoder.encode(editText4.text.toString(), "UTF-8")
@@ -55,18 +57,33 @@ class PaymentActivity : AppCompatActivity() {
 
                 println("URL : $url")
                 println("Response Code : $responseCode")
+                if(responseCode.equals(200)){
+                    val bd = sqlHelper.writableDatabase
 
-                BufferedReader(InputStreamReader(inputStream)).use {
-                    val response = StringBuffer()
-
-                    var inputLine = it.readLine()
-                    while (inputLine != null) {
-                        response.append(inputLine)
-                        inputLine = it.readLine()
+                    var id = intent.getStringExtra("id_user")
+                    val contentValues = ContentValues().apply {
+                        put(TBL_USUARIO_JOGO_COUNT, 20)
                     }
-                    it.close()
-                    textView3.text = ("Response : $response")
+                    bd.update(
+                        TBL_USUARIO_JOGO, contentValues, "$TBL_USUARIO_IDU = ?", arrayOf(id)
+                    )
+                    BufferedReader(InputStreamReader(inputStream)).use {
+                        val response = StringBuffer()
+
+                        var inputLine = it.readLine()
+                        while (inputLine != null) {
+                            response.append(inputLine)
+                            inputLine = it.readLine()
+                        }
+                        it.close()
+                        textView3.text = ("Response : $response")
+                    }
+                }else{
+                    textView3.text = ("Erro.")
                 }
+
+
+
             }
         }
     }
