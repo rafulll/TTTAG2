@@ -16,7 +16,7 @@ import android.os.StrictMode
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import kotlinx.android.synthetic.main.login_activity.*
 
 
 class PaymentActivity : AppCompatActivity() {
@@ -60,26 +60,38 @@ class PaymentActivity : AppCompatActivity() {
                 if(responseCode.equals(200)){
                     val bd = sqlHelper.writableDatabase
 
-                    var id = intent.getStringExtra("id_user")
-                    val contentValues = ContentValues().apply {
-                        put(TBL_USUARIO_JOGO_COUNT, 20)
-                    }
-                    bd.update(
-                        TBL_USUARIO_JOGO, contentValues, "$TBL_USUARIO_IDU = ?", arrayOf(id)
-                    )
-                    BufferedReader(InputStreamReader(inputStream)).use {
-                        val response = StringBuffer()
 
-                        var inputLine = it.readLine()
-                        while (inputLine != null) {
-                            response.append(inputLine)
-                            inputLine = it.readLine()
+                    var id = intent.getStringExtra("id_user")
+
+
+                        val contentValues = ContentValues().apply {
+                            put(TBL_USUARIO_JOGO_COUNT,20)
                         }
-                        it.close()
-                        textView3.text = ("Response : $response")
-                    }
+                        bd.update(
+                            TBL_USUARIO_JOGO, contentValues, "$TBL_USUARIO_IDU = ?", arrayOf(id)
+                        )
+                        BufferedReader(InputStreamReader(inputStream)).use {
+                            val response = StringBuffer()
+
+                            var inputLine = it.readLine()
+                            while (inputLine != null) {
+                                response.append(inputLine)
+                                inputLine = it.readLine()
+                            }
+                            it.close()
+                            textView3.text = ("OK: $responseCode \nResponse : $response")
+                        }
+
+
+                }else if(responseCode.equals(503)){
+                    textView3.text = ("Error: $responseCode \nTempo de Solicitação expirou. Tente novamente.")
+
+                }else if(responseCode.equals(401)){
+                    textView3.text = ("Error: $responseCode \nVerifique atenciosamente seus dados e tente novamente.")
+
                 }else{
-                    textView3.text = ("Erro.")
+                    textView3.text = ("Error: $responseCode \nVerifique atenciosamente seus dados e tente novamente.")
+
                 }
 
 
